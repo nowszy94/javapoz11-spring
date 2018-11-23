@@ -4,12 +4,15 @@ package com.sda.javapoz11.hellospring.hellospring.service;
 import com.sda.javapoz11.hellospring.hellospring.entity.User;
 import com.sda.javapoz11.hellospring.hellospring.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
+//@Profile("!prod")
 @Service
 public class UsersService {
 

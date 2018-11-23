@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 
 import java.util.Random;
 
@@ -22,6 +23,14 @@ public class HellospringApplication {
 		return new SmallNumbersGenerator();
 	}
 
+	@Profile("prod")
+	@Primary
+	@Bean
+	public RandomGenerator myBigNumbersGenerator() {
+		return new BigNumbersGenerator();
+	}
+
+	@Profile("!prod")
 	@Primary // adnotacja mowiaca o 'wyzszosci' tego beana nad pozostalymi - potencjalnie dostepnymi w kontekscie
 	@Bean // adnotacja na metodzie mowiaca springowi ze ma ta metode wywolac i jej wynik zapisac w kontekscie
 	public RandomGenerator bigNumbersGenerator() {
