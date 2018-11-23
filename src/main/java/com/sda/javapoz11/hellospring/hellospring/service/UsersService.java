@@ -2,6 +2,7 @@ package com.sda.javapoz11.hellospring.hellospring.service;
 
 
 import com.sda.javapoz11.hellospring.hellospring.entity.User;
+import com.sda.javapoz11.hellospring.hellospring.entity.UserNotFoundException;
 import com.sda.javapoz11.hellospring.hellospring.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -24,7 +25,7 @@ public class UsersService {
 
     public User findById(long id) {
         return usersRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " does not exists"));
     }
 
     public List<User> findAll() {

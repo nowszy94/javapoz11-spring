@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -32,4 +33,16 @@ public class HelloController {
         modelAndView.addObject("message", "Ala ma kota");
         return modelAndView;
     }
+
+    @GetMapping("/hello/{id}")
+    public ModelAndView hellasfo(@PathVariable("id") Integer id) {
+        if (id.equals(2)) {
+            throw new ProductNotFoundException();
+        }
+        ModelAndView modelAndView = new ModelAndView("hello.html");
+        modelAndView.addObject("message", "Ala ma kota");
+        return modelAndView;
+    }
+
+    public static class ProductNotFoundException extends RuntimeException {}
 }
